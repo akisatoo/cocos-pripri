@@ -1,1 +1,1 @@
-# cocos-pripri project
+# cocos-pripri
