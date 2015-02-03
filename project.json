@@ -1,0 +1,27 @@
+{
+    "project_type":"javascript",
+    "debugMode":1,
+    "showFPS":true,
+    "frameRate":60,
+    "id":"gameCanvas",
+    "renderMode":0,
+    "engineDir":"frameworks/cocos2d-html5",
+    "modules":[
+        "cocos2d"
+    ],
+    "jsList":[
+        "core/lib.js",
+        "core/underscore.js",
+        "src/resource.js",
+        "src/common/manager.js",
+        "core/basecharacter.js",
+        "src/common/attackcharacter.js",
+        "src/princess.js",
+        "src/hero.js",
+        "src/enemy.js",
+        "src/app.js",
+        "src/game.js",
+        "src/next.js",
+        "src/over.js"
+    ]
+}
