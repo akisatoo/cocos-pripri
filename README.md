@@ -1,1 +1,1 @@
-# pripri
+# cocos-pripri
