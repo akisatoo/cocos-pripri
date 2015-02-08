@@ -1,3 +1,4 @@
+var App = App || {};
 var lib = lib || new Lib();
 var manager = manager || new Manager();
 
@@ -17,14 +18,30 @@ var GameLayer = cc.LayerColor.extend({
 
 		//背景色
 		self.setColor(cc.color(255, 255, 255));
-		
+
 		//背景
 		var background = cc.Sprite(res.Background);
 		background.x = size.width / 2;
 		background.y = size.height / 2;
 		self.addChild(background, 0);
 		
-
+		var slotData = [
+		    manager.charaDataList['hero'],
+		    manager.charaDataList['princess'],
+		    manager.charaDataList['magician']
+		];
+		
+		//選択中のキャラを設定
+		manager.currentChara = slotData[0].name;
+		
+		//スロット
+		var slotBlock = new Slot({
+			slotData: slotData
+		});
+		slotBlock.x = size.width / 2;
+		slotBlock.y = slotBlock.height / 2 + 10;
+		self.addChild(slotBlock, 9999);
+		
 		//姫様
 		self.princess = new Princess({
 			image: res.PrincessRight1
@@ -71,8 +88,17 @@ var GameLayer = cc.LayerColor.extend({
 		
 		self.princess._instance.update();	//姫のupdate
 		
-		_.each(self.enemys, function (enemy) {
+		_.each(self.enemys, function (enemy, index) {
 			if (!enemy) {
+				var size = cc.winSize;
+				var ene = new Enemy({
+					x: Math.floor(Math.random() * size.width),
+					y: Math.floor(Math.random() * 2) === 0 ? -32 : size.height + 32,
+					image: res.EnemyLeft1,
+					target: self.princess
+				});
+				self.addChild(ene);
+				self.enemys[index] = ene;
 				return;
 			}
 			enemy._instance.update();	//敵のupdate
@@ -127,10 +153,11 @@ var GameLayer = cc.LayerColor.extend({
 			   }
 			   
 			   //ヒーロー生成
-			   var hero = new Hero({
+			   var currHero = manager.currentChara;
+			   var hero = new App[currHero]({
 				   x: pos.x,
 				   y: pos.y,
-				   image: res.HeroRight1,
+				   image: manager.charaDataList[currHero].image,
 				   targets: self.enemys
 			   });
 			   self.addChild(hero);

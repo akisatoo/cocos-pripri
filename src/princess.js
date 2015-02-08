@@ -1,3 +1,4 @@
+var App = App || {};
 var lib = lib || new Lib();
 var manager = manager || new Manager();
 
@@ -72,4 +73,6 @@ var Princess = null;
 		
 
 	});
+	
+	App.princess = Princess;
 })();
