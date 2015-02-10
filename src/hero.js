@@ -12,6 +12,7 @@ var Hero = null;
 	Hero.prototype = lib.extend(AttackCharacter.prototype, {
 		
 		_targets: null,	//ターゲット
+		_reactionflug: null, //はじかれる処理用フラグ
 
 		/**
 		 * アニメーションパターン作成
@@ -34,6 +35,12 @@ var Hero = null;
 			self.isUpdate = false;
 			self._beforeType = null;
 			self._targets = config.targets || [];	//ターゲットの配列を格納
+			
+			//HPを設定
+			self._hitpoint = 3;
+			
+			//はじかれる処理用フラグ
+			self._reactionflg = true;
 			
 			//バウンドアニメーション
 			self._animBounds();
@@ -132,13 +139,31 @@ var Hero = null;
 			
 			//あたり判定
 			if (self._hitTest({target: myTarget})) {
-				self._hitRotation({
-					complete: function () {
-						manager.gameStage.removeChild(self.chara, true);
-						self.chara = null;
-						return;
+				//HPを減らす
+				self._hitpoint--;
+				if(self._hitpoint <= 0){
+					//console.log( "hoge" );
+					// キャラが消える処理の実行
+					self._hitRotation({
+						complete: function () {
+							manager.gameStage.removeChild(self.chara, true);
+							self.chara = null;
+							return;
+						}
+					});
+					
+				} else {
+					 //キャラが跳ね返る動きの実行
+					if(self._reactionflg == true){
+						self._reactionflg = false;
+						self._hitReaction({
+							target: myTarget
+						});
+					} else {
+						self._reactionflg = true;
 					}
-				});
+					
+				}
 				
 				//ターゲット
 				myTarget._instance._hitRotation({
@@ -156,12 +181,12 @@ var Hero = null;
 				target: myTarget
 			});
 
-			/*
+			
 			//updateで移動
 			self._updateMove({
 				target: {x: 100, y: 100}//myTarget
 			});
-			 */
+			 
 			
 			return;
 		},
@@ -196,7 +221,5 @@ var Hero = null;
 			
 			return;
 		},
-		
-
 	});
 })();

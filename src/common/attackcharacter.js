@@ -53,6 +53,43 @@ var AttackCharacter = null;
 		},
 		
 		
+		/**
+		 * 衝突時処理(はじかれる時)
+		 */
+		_hitReaction: function (config) {
+			config = config || {};
+			
+			var self = this;
+			var target = config.target || null;
+
+			if (!self.chara || !target) {
+				return;
+			}
+			
+			//移動アニメーションがあれば停止、初期化
+			if (self._moveAnim) {
+				self.chara.stopAction(self._moveAnim);
+				self._moveAnim = null;
+			}
+
+			//はじかれる時の方向
+			if (target.x > self.chara.x) {
+				//右向き
+				var directionX = -200;
+			} else if (target.x < self.chara.x) {
+				//左向き
+				var directionX = 200;
+			}
+			
+			//console.log( "hoge" );
+			
+			var jump = cc.JumpBy.create(1, cc.p(Math.floor(Math.random() * directionX), 20), 20, 1);
+			//var seq = cc.Sequence.create(spawn, comp);
+			self.chara.runAction(jump);
+			
+			return;
+		},
+		
 
 		/**
 		 * 衝突時処理
