@@ -95,6 +95,10 @@ var BaseCharacter = null;
 			var startFunc = config.start || function () {};
 			var completeFunc = config.complete || function () {};
 			
+			if (!self.chara) {
+				return;
+			}
+			
 			//移動アニメーションがあれば停止、初期化
 			if (self._moveAnim) {
 				self.chara.stopAction(self._moveAnim);

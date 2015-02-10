@@ -1,3 +1,5 @@
+var App = App || {};
+
 var Manager = null;
 (function () {
 
@@ -12,6 +14,11 @@ var Manager = null;
 		 * ゲームステージ(レイヤー)
 		 */
 		gameStage: null,
+		
+		/**
+		 * ゲーム中の選択中のキャラ
+		 */
+		currentChara: null,
 		
 		
 		/**
@@ -48,7 +55,6 @@ var Manager = null;
 			return;
 		},
 		
-		//war funds.
 		/**
 		 * 軍資金
 		 */
@@ -67,7 +73,29 @@ var Manager = null;
 		removeWarfunds: function () {
 			cc.sys.localStorage.removeItem('warfunds');
 			return;
-		}
+		},
+		
+		/**
+		 * キャラクターデータ
+		 */
+		charaDataList: {
+			'princess': {
+				name: 'princess',
+				image: res.PrincessRight1,
+				animPattern: {'normal': [res.PrincessRight1, res.PrincessRight2]}
+			},
+			'hero': {
+				name: 'hero',
+				image: res.HeroRight1,
+				animPattern: {'normal': [res.HeroRight1, res.HeroRight2]}
+			},
+			'magician': {
+				name: 'magician',
+				image: res.MagicianRight1,
+				animPattern: {'normal': [res.MagicianRight1, res.MagicianRight2]}
+			}
+		},
+		
 
 	};
 })();

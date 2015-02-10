@@ -1,3 +1,4 @@
+var App = App || {};
 var manager = manager || new Manager();
 
 var TitleLayer = cc.LayerColor.extend({
