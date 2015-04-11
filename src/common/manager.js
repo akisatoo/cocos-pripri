@@ -80,19 +80,33 @@ var Manager = null;
 		 */
 		charaDataList: {
 			'princess': {
+				id: 1,
 				name: 'princess',
 				image: res.PrincessRight1,
-				animPattern: {'normal': [res.PrincessRight1, res.PrincessRight2]}
+				animPattern: {
+					normal: [res.PrincessRight1, res.PrincessRight2]
+				}
 			},
 			'hero': {
+				id: 2,
 				name: 'hero',
 				image: res.HeroRight1,
-				animPattern: {'normal': [res.HeroRight1, res.HeroRight2]}
+				animPattern: {
+					normal: [res.HeroRight1, res.HeroRight2],
+					right: [res.HeroRight1, res.HeroRight2],
+					left: [res.HeroLeft1, res.HeroLeft2]
+				},
+				movePattern: 0
 			},
 			'magician': {
+				id: 3,
 				name: 'magician',
 				image: res.MagicianRight1,
-				animPattern: {'normal': [res.MagicianRight1, res.MagicianRight2]}
+				animPattern: {
+					normal: [res.MagicianRight1, res.MagicianRight2],
+					right: [res.MagicianRight1, res.MagicianRight2],
+					left: [res.MagicianLeft1, res.MagicianLeft2]
+				}
 			}
 		},
 		

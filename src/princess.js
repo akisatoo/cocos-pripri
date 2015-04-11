@@ -51,7 +51,7 @@ var Princess = null;
 					if (sceneType === 'title') {
 						return;
 					}
-					
+					return;
 					//メインページ
 					cc.director.runScene(cc.TransitionFade(1.2, new OverScene({
 						level: 1

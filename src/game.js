@@ -154,12 +154,11 @@ var GameLayer = cc.LayerColor.extend({
 			   
 			   //ヒーロー生成
 			   var currHero = manager.currentChara;
-			   var hero = new App[currHero]({
+			   var hero = new BaseHero(_.extend(manager.charaDataList[currHero], {
 				   x: pos.x,
 				   y: pos.y,
-				   image: manager.charaDataList[currHero].image,
 				   targets: self.enemys
-			   });
+			   }));
 			   self.addChild(hero);
 			   self.heros.push(hero);
 			   return true;
