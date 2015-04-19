@@ -110,6 +110,23 @@ var Manager = null;
 			}
 		},
 		
+		
+		/**
+		 * キャラクターデータ
+		 */
+		enemyDataList: {
+			'underling': {
+				id: 1,
+				name: 'underling',
+				image: res.EnemyLeft1,
+				animPattern: {
+					normal: [res.EnemyLeft1, res.EnemyLeft2],
+					right: [res.EnemyRight1, res.EnemyRight2],
+					left: [res.EnemyLeft1, res.EnemyLeft2]
+				},
+			}
+		},
+		
 
 	};
 })();

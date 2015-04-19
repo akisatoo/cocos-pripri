@@ -25,9 +25,10 @@ var Character = null;
 		/**
 		 * 初期化
 		 */
-		_init: function (config) {
+		__construct: function (config) {
 			config = config || {};
 			var self = this;
+			var chara = Character.prototype.superclass.__construct.call(this, config);
 			
 			//キャラクターのパラメーター
 			self._baseHp = config.hitpoint || 1;
@@ -50,7 +51,7 @@ var Character = null;
 				}
 			});
 			
-			return;
+			return chara;
 		},
 		
 		

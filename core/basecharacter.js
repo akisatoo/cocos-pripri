@@ -19,7 +19,7 @@ var BaseCharacter = null;
 		__construct: function (config) {
 			config = config || {};
 			var self = this;
-			console.log('core/basecharacter.js');
+			
 			var x = config.x || null,
 				y = config.y || null;
 			
@@ -37,7 +37,7 @@ var BaseCharacter = null;
 			self.chara.y = y || 0;
 			
 			//初期化
-			self._init(config);
+			//self._init(config);
 			
 			//インスタンスにthisを設定
 			self.chara._instance = self;

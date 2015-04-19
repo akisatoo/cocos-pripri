@@ -21,7 +21,7 @@ var BaseHero = null;
 			config = config || {};
 			var self = this;
 			self.chara = BaseHero.prototype.superclass.__construct.call(this, config);
-			console.log('hero');
+			
 			//初期化
 			self.isUpdate = false;
 			self._beforeType = null;

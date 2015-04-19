@@ -25,6 +25,7 @@ var GameLayer = cc.LayerColor.extend({
 		background.y = size.height / 2;
 		self.addChild(background, 0);
 		
+		//TODO:メニューから選択したものが入る
 		var slotData = [
 		    manager.charaDataList['hero'],
 		    manager.charaDataList['princess'],
@@ -51,12 +52,11 @@ var GameLayer = cc.LayerColor.extend({
 		//敵の生成
 		var enemyMax = 10;
 		for (var i = 0; i < enemyMax; i++) {
-			var enemy = new Enemy({
+			var enemy = new BaseEnemy(_.extend(manager.enemyDataList['underling'], {
 				x: Math.floor(Math.random() * size.width),
 				y: i % 2 === 0 ? 0 : size.height,
-				image: res.EnemyLeft1,
 				target: self.princess
-			});
+			}));
 			self.addChild(enemy);
 			self.enemys.push(enemy);
 		}
@@ -91,12 +91,11 @@ var GameLayer = cc.LayerColor.extend({
 		_.each(self.enemys, function (enemy, index) {
 			if (!enemy) {
 				var size = cc.winSize;
-				var ene = new Enemy({
+				var ene = new BaseEnemy(_.extend(manager.enemyDataList['underling'], {
 					x: Math.floor(Math.random() * size.width),
 					y: Math.floor(Math.random() * 2) === 0 ? -32 : size.height + 32,
-					image: res.EnemyLeft1,
 					target: self.princess
-				});
+				}));
 				self.addChild(ene);
 				self.enemys[index] = ene;
 				return;
